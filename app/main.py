@@ -3,8 +3,6 @@ from app.controllers import product_controller
 from app.db.database import Base, engine
 from fastapi.responses import HTMLResponse
 
-Base.metadata.create_all(bind=engine)
-
 app = FastAPI(
     title="API de Produtos - ASCII Challenge",
     version="2.0",

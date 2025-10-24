@@ -14,7 +14,9 @@ target_metadata = Base.metadata
 def run_migrations_offline():
     url = settings.DATABASE_URL
     context.configure(
-        url=url, target_metadata=target_metadata, literal_binds=True, compare_type=True
+        url=url, 
+        target_metadata=target_metadata, 
+        literal_binds=True, compare_type=True
     )
     with context.begin_transaction():
         context.run_migrations()
@@ -25,6 +27,7 @@ def run_migrations_online():
         config.get_section(config.config_ini_section),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        url=settings.DATABASE_URL,
     )
     with connectable.connect() as connection:
         context.configure(connection=connection,
