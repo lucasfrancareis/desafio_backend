@@ -111,7 +111,8 @@ curl -X POST "http://127.0.0.1:8000/api/produtos/" \
 
 curl -X GET "http://127.0.0.1:8000/api/produtos/"
 
-> Resposta Esperada (Code 200): Uma lista [ ... ] de objetos JSON, cada um sendo um produto.
+> Resposta Esperada (Code 200): Uma lista [ ... ] de objetos JSON, cada um 
+> sendo um produto.
 
 # 3. Buscar um produto por ID (GET /:id)
 
@@ -159,7 +160,8 @@ architecture). A ideia principal é separar as responsabilidades
 do aplicativo em blocos lógicos, onde cada camada tem um trabalho específico. 
 Isso torna o código mais limpo, mais fácil de manter e de testar.
 
-> O fluxo de uma requisição segue esta ordem: Controller → Service → Repository → Model (Banco de Dados)
+> O fluxo de uma requisição segue: Controller → Service → Repository → Model 
+> (Banco de Dados)
 
 - Aqui está um detalhamento de cada pasta e arquivo principal do projeto:
 
@@ -175,6 +177,18 @@ Defino a rota raiz "/" (a "home page" que criamos) e o health check "/health".
 
 Incluo o roteador do product_controller, dizendo que todos os endpoints de 
 produto devem começar com o prefixo /api/produtos (como pedido no desafio).
+
+Home Page Interativa (/): Em vez de deixar a rota raiz (/) mostrar um erro 404, 
+eu decidi criar uma landing page customizada.
+
+Eu usei o @app.get("/") e especifiquei response_class=HTMLResponse.
+ O conteúdo é uma string Python que contém todo o HTML e CSS.
+
+O visual que você vê é um "glassmorphism" (efeito de vidro). Eu consegui esse 
+efeito no CSS combinando um background com rgba (para dar a transparência ao 
+"card") com a propriedade backdrop-filter: blur(10px) (que borra o fundo 
+gradiente do body atrás do card). Também adicionei uma animação fadeIn e um 
+rodapé com minha assinatura.
 
 # 📁 app/db/
 
